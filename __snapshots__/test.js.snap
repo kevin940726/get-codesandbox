@@ -1,0 +1,212 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`File path 1`] = `
+Object {
+  "files": Object {
+    "index.ts": Object {
+      "content": "console.log(\\"Hello get-codesandbox!\\");
+",
+    },
+    "package.json": Object {
+      "content": "{
+  \\"name\\": \\"console\\",
+  \\"version\\": \\"1.0.0\\",
+  \\"description\\": \\"\\",
+  \\"main\\": \\"index.ts\\",
+  \\"scripts\\": {
+    \\"start\\": \\"parcel index.html --open\\",
+    \\"build\\": \\"parcel build index.html\\"
+  },
+  \\"dependencies\\": {},
+  \\"devDependencies\\": {
+    \\"@babel/core\\": \\"7.2.0\\",
+    \\"parcel-bundler\\": \\"^1.6.1\\"
+  },
+  \\"keywords\\": []
+}
+",
+    },
+  },
+}
+`;
+
+exports[`Github path 1`] = `
+Object {
+  "files": Object {
+    "index.html": Object {
+      "content": "<!DOCTYPE html>
+<html lang=\\"en\\">
+  <head>
+    <meta charset=\\"UTF-8\\">
+    <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1.0\\">
+    <meta http-equiv=\\"X-UA-Compatible\\" content=\\"ie=edge\\">
+    <title>Static Template</title>
+  </head>
+  <body>
+    <h1>This is a static template, there is no bundler or bundling involved!</h1>
+  </body>
+</html>",
+    },
+    "package.json": Object {
+      "content": "{
+  \\"name\\": \\"static\\",
+  \\"version\\": \\"1.0.0\\",
+  \\"description\\": \\"This is a static template with no bundling\\",
+  \\"main\\": \\"index.html\\",
+  \\"scripts\\": {
+    \\"start\\": \\"serve\\",
+    \\"build\\": \\"echo This is a static template, there is no bundler or bundling involved!\\"
+  },
+  \\"repository\\": {
+    \\"type\\": \\"git\\",
+    \\"url\\": \\"git+https://github.com/codesandbox-app/static-template.git\\"
+  },
+  \\"keywords\\": [
+    \\"static\\",
+    \\"template\\",
+    \\"codesandbox\\"
+  ],
+  \\"author\\": \\"Ives van Hoorne\\",
+  \\"license\\": \\"MIT\\",
+  \\"bugs\\": {
+    \\"url\\": \\"https://github.com/codesandbox-app/static-template/issues\\"
+  },
+  \\"homepage\\": \\"https://github.com/codesandbox-app/static-template#readme\\",
+  \\"devDependencies\\": {
+    \\"serve\\": \\"^11.2.0\\"
+  }
+}
+",
+    },
+    "sandbox.config.json": Object {
+      "content": "{
+  \\"template\\": \\"static\\"
+}
+",
+    },
+  },
+}
+`;
+
+exports[`Official sandboxes 1`] = `
+Object {
+  "files": Object {
+    "index.html": Object {
+      "content": "<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Parcel Sandbox</title>
+	<meta charset=\\"UTF-8\\" />
+</head>
+
+<body>
+	<div id=\\"app\\"></div>
+
+	<script src=\\"src/index.js\\">
+	</script>
+</body>
+
+</html>",
+    },
+    "package.json": Object {
+      "content": "{
+  \\"name\\": \\"vanilla\\",
+  \\"version\\": \\"1.0.0\\",
+  \\"description\\": \\"JavaScript example starter project\\",
+  \\"main\\": \\"index.html\\",
+  \\"scripts\\": {
+    \\"start\\": \\"parcel index.html --open\\",
+    \\"build\\": \\"parcel build index.html\\"
+  },
+  \\"dependencies\\": {},
+  \\"devDependencies\\": {
+    \\"@babel/core\\": \\"7.2.0\\",
+    \\"parcel-bundler\\": \\"^1.6.1\\"
+  },
+  \\"keywords\\": [
+    \\"javascript\\",
+    \\"starter\\"
+  ]
+}",
+    },
+    "src/index.js": Object {
+      "content": "import \\"./styles.css\\";
+
+document.getElementById(\\"app\\").innerHTML = \`
+<h1>Hello Vanilla!</h1>
+<div>
+  We use the same configuration as Parcel to bundle this sandbox, you can find more
+  info about Parcel 
+  <a href=\\"https://parceljs.org\\" target=\\"_blank\\" rel=\\"noopener noreferrer\\">here</a>.
+</div>
+\`;
+",
+    },
+    "src/styles.css": Object {
+      "content": "body {
+  font-family: sans-serif;
+}
+",
+    },
+  },
+}
+`;
+
+exports[`Sandbox ID 1`] = `
+Object {
+  "files": Object {
+    "index.html": Object {
+      "content": "<!DOCTYPE html>
+<html lang=\\"en\\">
+  <head>
+    <meta charset=\\"UTF-8\\">
+    <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1.0\\">
+    <meta http-equiv=\\"X-UA-Compatible\\" content=\\"ie=edge\\">
+    <title>Static Template</title>
+  </head>
+  <body>
+    <h1>This is a static template, there is no bundler or bundling involved!</h1>
+  </body>
+</html>",
+    },
+    "package.json": Object {
+      "content": "{
+  \\"name\\": \\"static\\",
+  \\"version\\": \\"1.0.0\\",
+  \\"description\\": \\"This is a static template with no bundling\\",
+  \\"main\\": \\"index.html\\",
+  \\"scripts\\": {
+    \\"start\\": \\"serve\\",
+    \\"build\\": \\"echo This is a static template, there is no bundler or bundling involved!\\"
+  },
+  \\"repository\\": {
+    \\"type\\": \\"git\\",
+    \\"url\\": \\"git+https://github.com/codesandbox-app/static-template.git\\"
+  },
+  \\"keywords\\": [
+    \\"static\\",
+    \\"template\\",
+    \\"codesandbox\\"
+  ],
+  \\"author\\": \\"Ives van Hoorne\\",
+  \\"license\\": \\"MIT\\",
+  \\"bugs\\": {
+    \\"url\\": \\"https://github.com/codesandbox-app/static-template/issues\\"
+  },
+  \\"homepage\\": \\"https://github.com/codesandbox-app/static-template#readme\\",
+  \\"devDependencies\\": {
+    \\"serve\\": \\"^11.2.0\\"
+  }
+}
+",
+    },
+    "sandbox.config.json": Object {
+      "content": "{
+  \\"template\\": \\"static\\"
+}
+",
+    },
+  },
+}
+`;

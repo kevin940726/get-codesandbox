@@ -1,0 +1,23 @@
+{
+  "name": "get-codesandbox",
+  "version": "0.0.0",
+  "description": "Given a CodeSandbox id, GitHub path, or file system path, returns the contents of the sandbox.",
+  "main": "index.js",
+  "repository": "https://github.com/kevin940726/get-codesandbox",
+  "author": "Kai Hao",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.0",
+    "recursive-readdir": "^2.2.2"
+  },
+  "devDependencies": {
+    "jest": "^26.0.1",
+    "prettier": "2.0.5"
+  },
+  "prettier": {
+    "singleQuote": true
+  }
+}

@@ -19,7 +19,7 @@ npm install get-codesandbox
 ## Usage
 
 ```js
-const getCodeSandbox = require('get-codesandbox');
+const { getCodeSandbox } = require('get-codesandbox');
 
 const { files } = await getCodeSandbox('new'); // Official sandboxes
 const { files } = await getCodeSandbox('rjk9n4zj7m'); // Sandbox ID
@@ -29,4 +29,14 @@ const { files } = await getCodeSandbox(
 const { files } = await getCodeSandbox('file:./examples/console'); // File path
 
 console.log(files);
+```
+
+There's also an utility function `uploadSandbox` to upload the contents of the sandbox to CodeSandbox.io and get the sandbox ID.
+
+```js
+const { getCodeSandbox, uploadSandbox } = require('get-codesandbox');
+
+const sandbox = await getCodeSandbox('file:./examples/console');
+
+const sandboxID = await uploadSandbox(sandbox);
 ```

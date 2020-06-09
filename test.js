@@ -1,4 +1,4 @@
-const getCodeSandbox = require('./');
+const { getCodeSandbox } = require('./');
 
 test('Official sandboxes', async () => {
   const sandbox = await getCodeSandbox('vanilla');

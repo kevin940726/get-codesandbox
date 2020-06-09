@@ -1,6 +1,6 @@
 {
   "name": "get-codesandbox",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Given a CodeSandbox id, GitHub path, or file system path, returns the contents of the sandbox.",
   "main": "index.js",
   "repository": "https://github.com/kevin940726/get-codesandbox",

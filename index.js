@@ -1,13 +1,18 @@
 'use strict';
 
-const fs = require('fs').promises;
+const fs = require('fs');
 const path = require('path');
 const readdir = require('recursive-readdir');
 const fetch = require('node-fetch');
 const { getParameters } = require('codesandbox/lib/api/define');
+const { isBinaryFile } = require('isbinaryfile');
+const FormData = require('form-data');
 const DEFAULT_IGNORE_PATHS = require('./ignore-paths');
 
-async function getSandboxFromFile(directoryPath, ignorePaths) {
+async function getSandboxFromFile(
+  directoryPath,
+  { ignorePaths, skipUploadingBinaryFiles }
+) {
   let absDirectoryPath;
 
   if (path.isAbsolute(directoryPath)) {
@@ -23,9 +28,18 @@ async function getSandboxFromFile(directoryPath, ignorePaths) {
   for (const filePath of filePaths) {
     const relativePath = path.relative(absDirectoryPath, filePath);
 
-    files[relativePath] = {
-      content: await fs.readFile(filePath, 'utf8'),
-    };
+    const isBinary = await isBinaryFile(filePath);
+
+    if (isBinary && skipUploadingBinaryFiles) {
+      continue;
+    }
+
+    files[relativePath] = isBinary
+      ? {
+          content: await uploadFileToFileIO(filePath),
+          isBinary: true,
+        }
+      : { content: await fs.promises.readFile(filePath, 'utf8') };
   }
 
   return {
@@ -33,14 +47,35 @@ async function getSandboxFromFile(directoryPath, ignorePaths) {
   };
 }
 
+async function uploadFileToFileIO(filePath) {
+  const form = new FormData();
+
+  form.append('file', fs.createReadStream(filePath));
+
+  const { success, link, message, error } = await fetch('https://file.io', {
+    method: 'POST',
+    headers: form.getHeaders(),
+    body: form,
+  }).then((res) => res.json());
+
+  if (!success) {
+    throw message || error;
+  }
+
+  return link;
+}
+
 async function getCodeSandbox(
   sandboxID,
-  { ignorePaths = DEFAULT_IGNORE_PATHS } = {}
+  { ignorePaths = DEFAULT_IGNORE_PATHS, skipUploadingBinaryFiles = false } = {}
 ) {
   if (sandboxID.startsWith('file:')) {
     const directoryPath = sandboxID.slice('file:'.length);
 
-    return getSandboxFromFile(directoryPath, ignorePaths);
+    return getSandboxFromFile(directoryPath, {
+      ignorePaths,
+      skipUploadingBinaryFiles,
+    });
   }
 
   const { data } = await fetch(

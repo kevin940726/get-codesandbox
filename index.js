@@ -6,7 +6,7 @@ const readdir = require('recursive-readdir');
 const fetch = require('node-fetch');
 const { getParameters } = require('codesandbox/lib/api/define');
 
-const IGNORE_PATHS = [
+const DEFAULT_IGNORE_PATHS = [
   '.gitignore',
   '*.log',
   '.DS_Store',
@@ -18,7 +18,7 @@ const IGNORE_PATHS = [
   '.cache',
 ];
 
-async function getSandboxFromFile(directoryPath) {
+async function getSandboxFromFile(directoryPath, ignorePaths) {
   let absDirectoryPath;
 
   if (path.isAbsolute(directoryPath)) {
@@ -27,7 +27,7 @@ async function getSandboxFromFile(directoryPath) {
     absDirectoryPath = path.resolve(process.cwd(), directoryPath);
   }
 
-  const filePaths = await readdir(absDirectoryPath, IGNORE_PATHS);
+  const filePaths = await readdir(absDirectoryPath, ignorePaths);
 
   const files = {};
 
@@ -44,11 +44,14 @@ async function getSandboxFromFile(directoryPath) {
   };
 }
 
-async function getCodeSandbox(sandboxID) {
+async function getCodeSandbox(
+  sandboxID,
+  { ignorePaths = DEFAULT_IGNORE_PATHS } = {}
+) {
   if (sandboxID.startsWith('file:')) {
     const directoryPath = sandboxID.slice('file:'.length);
 
-    return getSandboxFromFile(directoryPath);
+    return getSandboxFromFile(directoryPath, ignorePaths);
   }
 
   const { data } = await fetch(
@@ -113,5 +116,6 @@ async function uploadSandbox(sandbox) {
 module.exports = exports = getCodeSandbox;
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.default = getCodeSandbox;
+exports.getCodeSandbox = getCodeSandbox;
 exports.getSandboxFromFile = getSandboxFromFile;
 exports.uploadSandbox = uploadSandbox;

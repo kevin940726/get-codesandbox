@@ -1,5 +1,6 @@
 module.exports = [
   '.gitignore',
+  '.git',
   '*.log',
   '.DS_Store',
   'node_modules',

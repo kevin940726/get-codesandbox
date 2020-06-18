@@ -31,6 +31,14 @@ const { files } = await getCodeSandbox('file:./examples/console'); // File path
 console.log(files);
 ```
 
+You can choose which files to be ignored when using _file path_ with the `ignorePaths` options. **Note that providing this option will override the [default paths](./ignore-paths.js).**
+
+```js
+const { files } = await getCodeSandbox('file:./examples/console', {
+  ignorePaths: ['node_modules'],
+});
+```
+
 There's also an utility function `uploadSandbox` to upload the contents of the sandbox to CodeSandbox.io and get the sandbox ID.
 
 ```js

@@ -5,18 +5,7 @@ const path = require('path');
 const readdir = require('recursive-readdir');
 const fetch = require('node-fetch');
 const { getParameters } = require('codesandbox/lib/api/define');
-
-const DEFAULT_IGNORE_PATHS = [
-  '.gitignore',
-  '*.log',
-  '.DS_Store',
-  'node_modules',
-  'package-lock.json',
-  'yarn.lock',
-  '.yarn',
-  '.pnp.js',
-  '.cache',
-];
+const DEFAULT_IGNORE_PATHS = require('./ignore-paths');
 
 async function getSandboxFromFile(directoryPath, ignorePaths) {
   let absDirectoryPath;

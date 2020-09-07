@@ -2,6 +2,7 @@
 
 exports[`File path 1`] = `
 Object {
+  "entry": "index.html",
   "files": Object {
     "index.ts": Object {
       "content": "console.log(\\"Hello get-codesandbox!\\");
@@ -32,6 +33,7 @@ Object {
 
 exports[`Github path 1`] = `
 Object {
+  "entry": "index.html",
   "files": Object {
     "index.html": Object {
       "content": "<!DOCTYPE html>
@@ -90,6 +92,7 @@ Object {
 
 exports[`Official sandboxes 1`] = `
 Object {
+  "entry": "src/index.js",
   "files": Object {
     "index.html": Object {
       "content": "<!DOCTYPE html>
@@ -155,6 +158,7 @@ document.getElementById(\\"app\\").innerHTML = \`
 
 exports[`Sandbox ID 1`] = `
 Object {
+  "entry": "index.html",
   "files": Object {
     "index.html": Object {
       "content": "<!DOCTYPE html>

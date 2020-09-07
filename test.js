@@ -2,38 +2,47 @@ const fetch = require('node-fetch');
 const fs = require('fs');
 const { getCodeSandbox, uploadSandbox } = require('./');
 
-// Some E2E test needs more time
+// Some E2E tests need more time
 jest.setTimeout(10000);
 
 test('Official sandboxes', async () => {
-  const sandbox = await getCodeSandbox('vanilla');
+  const { files, entry } = await getCodeSandbox('vanilla');
 
-  expect(sandbox).toMatchSnapshot();
+  expect({
+    files,
+    entry,
+  }).toMatchSnapshot();
 });
 
 test('Sandbox ID', async () => {
-  const sandbox = await getCodeSandbox('rjk9n4zj7m'); // Static
+  const { files, entry } = await getCodeSandbox('rjk9n4zj7m'); // Static
 
-  expect(sandbox).toMatchSnapshot();
+  expect({
+    files,
+    entry,
+  }).toMatchSnapshot();
 });
 
 test('Github path', async () => {
-  const sandbox = await getCodeSandbox(
+  const { files, entry } = await getCodeSandbox(
     'github/codesandbox-app/static-template'
   );
 
-  expect(sandbox).toMatchSnapshot();
+  expect({
+    files,
+    entry,
+  }).toMatchSnapshot();
 });
 
 test('File path', async () => {
-  const sandbox = await getCodeSandbox('file:./examples/console');
+  const { files, entry } = await getCodeSandbox('file:./examples/console');
 
-  expect(sandbox).toMatchSnapshot();
+  expect({ files, entry }).toMatchSnapshot();
 });
 
 test('Upload binary files', async () => {
-  const sandbox = await getCodeSandbox('file:./examples/binary');
-  const sandboxID = await uploadSandbox(sandbox);
+  const { files } = await getCodeSandbox('file:./examples/binary');
+  const sandboxID = await uploadSandbox({ files });
 
   const received = await fetch(
     `https://${sandboxID}.csb.app/src/cat.png`

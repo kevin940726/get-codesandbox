@@ -21,14 +21,14 @@ npm install get-codesandbox
 ```js
 const { getCodeSandbox } = require('get-codesandbox');
 
-const { files } = await getCodeSandbox('new'); // Official sandboxes
-const { files } = await getCodeSandbox('rjk9n4zj7m'); // Sandbox ID
-const { files } = await getCodeSandbox(
+const { files, entry } = await getCodeSandbox('new'); // Official sandboxes
+const { files, entry } = await getCodeSandbox('rjk9n4zj7m'); // Sandbox ID
+const { files, entry } = await getCodeSandbox(
   'github/codesandbox-app/static-template'
 ); // Github path
-const { files } = await getCodeSandbox('file:./examples/console'); // File path
+const { files, entry } = await getCodeSandbox('file:./examples/console'); // File path
 
-console.log(files);
+console.log(files, entry);
 ```
 
 You can choose which files to be ignored when using _file path_ with the `ignorePaths` options. **Note that providing this option will override the [default paths](./ignore-paths.js).**
@@ -39,12 +39,12 @@ const { files } = await getCodeSandbox('file:./examples/console', {
 });
 ```
 
-There's also an utility function `uploadSandbox` to upload the contents of the sandbox to CodeSandbox.io and get the sandbox ID.
+There's also an utility function `uploadSandbox` to upload the `files` of the sandbox to CodeSandbox.io and get the sandbox ID.
 
 ```js
 const { getCodeSandbox, uploadSandbox } = require('get-codesandbox');
 
-const sandbox = await getCodeSandbox('file:./examples/console');
+const { files } = await getCodeSandbox('file:./examples/console');
 
-const sandboxID = await uploadSandbox(sandbox);
+const sandboxID = await uploadSandbox(files);
 ```

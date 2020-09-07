@@ -1110,6 +1110,11 @@ co@^4.6.0:
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
   integrity sha1-bqa989hTrlTMuOR7+gvz+QMfsYQ=
 
+codesandbox-import-util-types@^2.1.15:
+  version "2.1.15"
+  resolved "https://registry.yarnpkg.com/codesandbox-import-util-types/-/codesandbox-import-util-types-2.1.15.tgz#c38b7aeedff7f2b2b285d02f828ba32f72bb9634"
+  integrity sha512-TNyIWbo2G+ytlQGgIy/LOECizWBwlUAkFPPI7GgGxhbSmz0ML00rEvxSVO5KsInzn/Nh4zDwY9G+cPn2TRR9hQ==
+
 codesandbox-import-util-types@^2.1.9:
   version "2.1.9"
   resolved "https://registry.yarnpkg.com/codesandbox-import-util-types/-/codesandbox-import-util-types-2.1.9.tgz#24ba5ec3d966f51f18b78c48d32e6411da90aa74"
@@ -1121,6 +1126,15 @@ codesandbox-import-utils@^2.1.14:
   integrity sha512-IOV1lk/hEnp6KV4uuHvfjrdIbYSVx11WXr75ABjHPuBh117AgKEbujTduoAChDuEofevV6GwlIyl32EBNECE1Q==
   dependencies:
     codesandbox-import-util-types "^2.1.9"
+    istextorbinary "^2.2.1"
+    lz-string "^1.4.4"
+
+codesandbox-import-utils@^2.1.16:
+  version "2.1.16"
+  resolved "https://registry.yarnpkg.com/codesandbox-import-utils/-/codesandbox-import-utils-2.1.16.tgz#0949327c4a45fb251c76972b72da7e73a9b3b9a5"
+  integrity sha512-5m3QVL27FPup6w0Mt3vFqphR0PoGK5dI99Bb+53onfwdlMLONKL4qXR2sOb+2G/IwPz7I/NjwznnPyNGmo+k1g==
+  dependencies:
+    codesandbox-import-util-types "^2.1.15"
     istextorbinary "^2.2.1"
     lz-string "^1.4.4"
 

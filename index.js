@@ -5,6 +5,10 @@ const path = require('path');
 const readdir = require('recursive-readdir');
 const fetch = require('node-fetch');
 const { getParameters } = require('codesandbox/lib/api/define');
+const {
+  getMainFile,
+  getTemplate,
+} = require('codesandbox-import-utils/lib/create-sandbox/templates');
 const { isBinaryFile } = require('isbinaryfile');
 const FormData = require('form-data');
 const DEFAULT_IGNORE_PATHS = require('./ignore-paths');
@@ -42,8 +46,14 @@ async function getSandboxFromFile(
       : { content: await fs.promises.readFile(filePath, 'utf8') };
   }
 
+  const packageJSON = JSON.parse(files['package.json'].content);
+
+  const templateName = getTemplate(packageJSON, files);
+  const entry = getMainFile(templateName);
+
   return {
     files,
+    entry,
   };
 }
 
@@ -102,6 +112,7 @@ async function getCodeSandbox(
   });
 
   return {
+    ...data,
     files,
   };
 }

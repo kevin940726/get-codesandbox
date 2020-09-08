@@ -31,13 +31,29 @@ const { files, entry } = await getCodeSandbox('file:./examples/console'); // Fil
 console.log(files, entry);
 ```
 
-You can choose which files to be ignored when using _file path_ with the `ignorePaths` options. **Note that providing this option will override the [default paths](./ignore-paths.js).**
+## Options
 
-```js
-const { files } = await getCodeSandbox('file:./examples/console', {
-  ignorePaths: ['node_modules'],
-});
-```
+- `ignorePaths`: You can choose which files to be ignored when using _file path_ with the `ignorePaths` options. **Note that providing this option will override the [default paths](./ignore-paths.js).**
+
+  ```js
+  const { files } = await getCodeSandbox('file:./examples/console', {
+    ignorePaths: ['node_modules'],
+  });
+  ```
+- `skipUploadingBinaryFiles`: By default, it will upload binary files to `file.io` temporary until CodeSandbox fetch it from there. You can bypass this by setting this option to `true`.
+  ```js
+  const { files } = await getCodeSandbox('file:./examples/console', {
+    skipUploadingBinaryFiles: true,
+  });
+  ```
+- `basePath`: The default base path when using relative path with `file:` schema is `process.cwd()`. You can override this by providing your own base path. **The path has to be an absolute path.**
+  ```js
+  const { files } = await getCodeSandbox('file:./examples/console', {
+    basePath: __dirname,
+  });
+  ```
+
+## `uploadSandbox`
 
 There's also an utility function `uploadSandbox` to upload the `files` of the sandbox to CodeSandbox.io and get the sandbox ID.
 

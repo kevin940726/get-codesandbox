@@ -15,14 +15,14 @@ const DEFAULT_IGNORE_PATHS = require('./ignore-paths');
 
 async function getSandboxFromFile(
   directoryPath,
-  { ignorePaths, skipUploadingBinaryFiles }
+  { ignorePaths, skipUploadingBinaryFiles, basePath }
 ) {
   let absDirectoryPath;
 
   if (path.isAbsolute(directoryPath)) {
     absDirectoryPath = directoryPath;
   } else {
-    absDirectoryPath = path.resolve(process.cwd(), directoryPath);
+    absDirectoryPath = path.resolve(basePath, directoryPath);
   }
 
   const filePaths = await readdir(absDirectoryPath, ignorePaths);
@@ -77,7 +77,11 @@ async function uploadFileToFileIO(filePath) {
 
 async function getCodeSandbox(
   sandboxID,
-  { ignorePaths = DEFAULT_IGNORE_PATHS, skipUploadingBinaryFiles = false } = {}
+  {
+    ignorePaths = DEFAULT_IGNORE_PATHS,
+    skipUploadingBinaryFiles = false,
+    basePath = process.cwd(),
+  } = {}
 ) {
   if (sandboxID.startsWith('file:')) {
     const directoryPath = sandboxID.slice('file:'.length);
@@ -85,6 +89,7 @@ async function getCodeSandbox(
     return getSandboxFromFile(directoryPath, {
       ignorePaths,
       skipUploadingBinaryFiles,
+      basePath,
     });
   }
 

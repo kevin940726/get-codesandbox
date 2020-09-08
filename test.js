@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const path = require('path');
 const fs = require('fs');
 const { getCodeSandbox, uploadSandbox } = require('./');
 
@@ -36,6 +37,14 @@ test('Github path', async () => {
 
 test('File path', async () => {
   const { files, entry } = await getCodeSandbox('file:./examples/console');
+
+  expect({ files, entry }).toMatchSnapshot();
+});
+
+test('File path with base path', async () => {
+  const { files, entry } = await getCodeSandbox('file:./console', {
+    basePath: path.resolve(__dirname, 'examples'),
+  });
 
   expect({ files, entry }).toMatchSnapshot();
 });
